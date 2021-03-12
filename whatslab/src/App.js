@@ -1,25 +1,53 @@
-import logo from './logo.svg';
+import React from 'react';
+import styled from 'styled-components';
+import { Mensagens } from './components/Mensagens';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const PapelDeParede = styled.div`
+  max-width: 600px;
+  height: 100vh;
+  border: 1px solid black;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #E5DDD6;
+`
 
+const BlocoTexto = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+`
+const SpanTexto = styled.span`
+  font-weight: bold;
+`
+
+class App extends React.Component {
+  constructor(){
+    super()
+
+    this.state = {
+      mensagens: []
+    }
+  }
+
+  addMensagem = (mensagemTexto) => {
+    this.setState({mensagens: [...this.state.mensagens, mensagemTexto]})
+  }
+
+  render(){
+    return(
+        <PapelDeParede>
+          <BlocoTexto>
+            {
+              this.state.mensagens.map((mensagemTexto, index) => <p key={index}><SpanTexto>{mensagemTexto.nome}</SpanTexto>{': ' + mensagemTexto.texto}</p> )
+            }
+            </BlocoTexto>
+            <Mensagens addMensagem={this.addMensagem} />
+        </PapelDeParede>
+    );
+  }
+}
 export default App;
