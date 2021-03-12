@@ -14,7 +14,7 @@ const InputUsuario = styled.input`
 `
 const InputMensagem = styled.input`
   flex: 1;
-  padding: 12px 20px;
+  padding: 11px 20px;
   margin: 8px 0;
   box-sizing: border-box;
   border: none;
